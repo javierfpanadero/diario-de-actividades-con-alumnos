@@ -195,7 +195,7 @@ Juntos somos más -->
 </head>
 <body>
 <h1 contenteditable="true" id="anchor0">DIARIO v6-3 GESTIÓN<br></h1>
-<div class = "floating-buttons" style="position: static;">
+<div class = "floating-buttons" style="position: static;" title = "Cambia aquí de color. Esto no son botones">
         <input type="text" id="opcion1" placeholder="Opción 1" style="text-align: center; font-weight: bold; width: 100; background-color: var(--colorPrimero);">           
         <input type="text" id="opcion2" placeholder="Opción 2" style="text-align: center; font-weight: bold; width: 100; background-color: var(--colorSegundo);">            
         <input type="text" id="opcion3" placeholder="Opción 3" style="text-align: center; font-weight: bold; width: 100; background-color: var(--colorTercero);">
@@ -204,7 +204,7 @@ Juntos somos más -->
 </div>
 <div class="floating-buttons">
 		<button onclick="window.location.href='#top';"><b>TOP</b></button>
-		<button id="saveButton"><b>GUARDAR</b></button>	
+		<button id="saveButton" title="Descarga un archivo DIARIO_DÍA_HORA"><b>GUARDAR</b></button>	
         <button class="color-button" id="colorButton" onclick="aplicarColor()"><b>COLOR</b></button>
         <div class="dropdown-arrow" onclick="toggleColorOptions(event)"></div>
         <div class="color-options" id="colorOptions">
@@ -240,9 +240,7 @@ Juntos somos más -->
 		
         <button onclick="toggleBold()"><b>BOLD</b></button>
         <button onclick="toggleHighlight()"><b>RESALTAR</b></button>
-        <!-- <button onclick="toggleGreyBackground()"><b>HECHO</b></button> -->
-        <!-- <button onclick="descargarTablaSeleccionada()"><b>▼TABLA</b></button> -->
-		<button id="toggleEditable"><b>EDICIÓN</b></button>
+		<button id="toggleEditable" title="Cambia a modo selección para poder copiar contenido de las tablas"><b>EDICIÓN</b></button>
 		<button onclick="addAlumno()"><b>ALUMNO+</b></button>
     </div>
 <div id="containerEnlaces" class="containerEnlaces">    
@@ -386,7 +384,7 @@ function addAlumno(){
             <div class="stickyalumno"> 
                 <table><tr>
 					<td style="font-size: 2em; font-weight: bold;" id="${nombreAlumno}" contenteditable="true"> ${nombreAlumno}</td>
-					<td contenteditable="true"><b>INBOX</b></td>
+					<td contenteditable="true" title="Escribe aquí notas a procesar, alertas, etc."><b>INBOX</b></td>
 				</tr></table>
                 <button onclick="addFiles()">Añadir fila</button>
                 <button onclick="addAsignatura()">Añadir Tema</button>
@@ -411,7 +409,7 @@ function addAlumno(){
             <div class="stickyalumno">
 				<table><tr>
 					<td style="font-size: 2em; font-weight: bold;" id="${nombreAlumno}Centro" contenteditable="true"> ${nombreAlumno} Centro </td>
-					<td contenteditable="true"><b>INBOX</b></td>
+					<td contenteditable="true" title="Escribe aquí notas a procesar, alertas, etc."><b>INBOX</b></td>
 				</tr></table>
                 <button onclick="addFiles()">Añadir fila</button>
                 <button onclick="addAsignatura()">Añadir Tema</button>
@@ -436,7 +434,7 @@ function addAlumno(){
             <div class="stickyalumno">
 				<table><tr>
 					<td style="font-size: 2em; font-weight: bold;"id="${nombreAlumno}Familia" contenteditable="true"> ${nombreAlumno} Familia </td>
-					<td contenteditable="true"><b>INBOX</b></td>
+					<td contenteditable="true" title="Escribe aquí notas a procesar, alertas, etc."><b>INBOX</b></td>
 				</tr></table>
                 <button onclick="addFiles()">Añadir fila</button>
                 <button onclick="addAsignatura()">Añadir Tema</button>
