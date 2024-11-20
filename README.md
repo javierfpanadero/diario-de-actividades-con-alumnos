@@ -43,3 +43,4 @@ MUUUUUUY IMPORTANTE
 - Si queréis otra disposición de botones o cambiar los colorinchis, es muy fácil. Se puede hacer al principio o en cualquier momento sobre una versión ya guardada editando el HTML. En el HTML he dejado todos los colores declarados al principio como variables para que sea más sencillo su cambio incluso por quienes no sepan HTML.
 
 Espero que os sirva. Cualquier sugerencia o comentario será muy bienvenido.
+https://youtu.be/D71oecq29po?si=M53fiY81s8R09yR6
