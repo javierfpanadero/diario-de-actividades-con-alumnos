@@ -1,6 +1,6 @@
 # diario-de-actividades-con-alumnos
 Es un archivo html. Se trata de llevar constancia de tareas hechas y pendientes y de comunicación con familias u otros docentes.
-
+![image](https://github.com/user-attachments/assets/870778ec-6834-4243-a691-0bd06488595e)
 Lo podréis abrir y editar desde un navegador (Firefox nos dio algún problema, pero en Chrome, Opera y Edge, al menos, funciona bien).
 He usado muchos tutoriales, ayudas e IA para generar el código e ir retocándolo.
 Está hecho usando CSS y JavaScript, así que tiene unos botoncicos y unas funciones que a mí me solucionan mucho.
