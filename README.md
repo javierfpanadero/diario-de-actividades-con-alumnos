@@ -36,11 +36,14 @@ MUUUUUUY IMPORTANTE
       - Se elige el color
       - Se pone el cursor en la celda.
       - Se pulsa el botón de cambio de color
-  - Para cambiar el nombre de los colores, por ejemplo: Examen, Alerta, Consultar, etc. Tenemos la "leyenda" de arriba a la izquierda. Si haces click y escribes ahí el término que quieras se actualizará en el desplegable de opciones. (Si ya tienes una opción escogida y le cambias el nombre, no se acutaliza hasta que la eliges de nuevo, no se me asusten). Importante recordar que estos lugares donde dar nombre NO son botones para cambiar el color, solo valen para poner nombre y recordar qué significan.
-
 
 - Los botones están siempre flotando a la vista y los títulos de las tablas también van bajando para que no te pierdas. El nombre del alumno y los botones de fila nueva, asignatura nueva y borrar asignatura, también te acompañan cuando te mueves en horizontal.
-- Si queréis otra disposición de botones o cambiar los colorinchis, es muy fácil. Se puede hacer al principio o en cualquier momento sobre una versión ya guardada editando el HTML. En el HTML he dejado todos los colores declarados al principio como variables para que sea más sencillo su cambio incluso por quienes no sepan HTML.
+
+En la versión 6-8 hemos quitado lo de poner nombre a los colores, porque esos nombres no se guardaban al guardar el diario. Se han dejado unos nombres fijos, pero se pueden cambiar muy fácilmente abriendo el archivo html, están definidos como variables CSS bastante al principio del archivo. Busca "urgente", por ejemplo y te llevará allí. Cambia los términos a tu gusto, guarda el html y ya lo tienes. Esto lo puedes hacer tantas veces como quieras sobre archivos guardados y funcionará sin problema. En ese mismo lugar podéis cambiar muchos de los colores que se usan en el diario, cambiando su código hexadecimal (o su nombre en html). Aunque no sepas HTML prueba, es fácil, por ejemplo, donde ponga cyan, pon green o el que quieras.
+
+Buscando, también podéis cambiar los nombres de los botones (TOP, GUARDAR, etc.). Otras cosas las podéis editar directamente en el diario desde el navegador: El título "Diario 6-8", nombres de alumnos (aunque los hayáis creado con uno concreto), títulos de tablas. Si quieres editar algo, prueba a hacerlo desde el navegador y si no ya en el código HTML.
+
+Eso sí, sobre todo si estás editando el HTML, haz primero una copia y luego edita... por si metes la pata.
 
 Espero que os sirva. Cualquier sugerencia o comentario será muy bienvenido.
 https://youtu.be/D71oecq29po?si=M53fiY81s8R09yR6
