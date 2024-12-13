@@ -1,4 +1,7 @@
 # diario-de-actividades-con-alumnos
+
+**La última versión es la 6-8**
+
 Es un archivo html. Se trata de llevar constancia de tareas hechas y pendientes y de comunicación con familias u otros docentes.
 ![image](https://github.com/user-attachments/assets/870778ec-6834-4243-a691-0bd06488595e)
 Lo podréis abrir y editar desde un navegador (Firefox nos dio algún problema, pero en Chrome, Opera y Edge, al menos, funciona bien).
@@ -39,7 +42,7 @@ MUUUUUUY IMPORTANTE
 
 - Los botones están siempre flotando a la vista y los títulos de las tablas también van bajando para que no te pierdas. El nombre del alumno y los botones de fila nueva, asignatura nueva y borrar asignatura, también te acompañan cuando te mueves en horizontal.
 
-En la versión 6-8 hemos quitado lo de poner nombre a los colores, porque esos nombres no se guardaban al guardar el diario. Se han dejado unos nombres fijos, pero se pueden cambiar muy fácilmente abriendo el archivo html, están definidos como variables CSS bastante al principio del archivo. Busca "urgente", por ejemplo y te llevará allí. Cambia los términos a tu gusto, guarda el html y ya lo tienes. Esto lo puedes hacer tantas veces como quieras sobre archivos guardados y funcionará sin problema. En ese mismo lugar podéis cambiar muchos de los colores que se usan en el diario, cambiando su código hexadecimal (o su nombre en html). Aunque no sepas HTML prueba, es fácil, por ejemplo, donde ponga cyan, pon green o el que quieras.
+**En la versión 6-8 hemos quitado lo de poner nombre a los colores, porque esos nombres no se guardaban al guardar el diario. Se han dejado unos nombres fijos, pero se pueden cambiar muy fácilmente abriendo el archivo html, están definidos como variables CSS bastante al principio del archivo. Busca "urgente", por ejemplo y te llevará allí. Cambia los términos a tu gusto, guarda el html y ya lo tienes. Esto lo puedes hacer tantas veces como quieras sobre archivos guardados y funcionará sin problema. En ese mismo lugar podéis cambiar muchos de los colores que se usan en el diario, cambiando su código hexadecimal (o su nombre en html). Aunque no sepas HTML prueba, es fácil, por ejemplo, donde ponga cyan, pon green o el que quieras.**
 
 Buscando, también podéis cambiar los nombres de los botones (TOP, GUARDAR, etc.). Otras cosas las podéis editar directamente en el diario desde el navegador: El título "Diario 6-8", nombres de alumnos (aunque los hayáis creado con uno concreto), títulos de tablas. Si quieres editar algo, prueba a hacerlo desde el navegador y si no ya en el código HTML.
 
