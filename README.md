@@ -17,7 +17,7 @@ Os describo un poco el funcionamiento, aunque diría que es bastante intuitivo. 
 
 Aquí os dejo más detalles
 
-- Cuando lo abráis veréis que está en BLANCO, no se me asunten.
+- Cuando lo abráis veréis que está en BLANCO, no se me asusten.
 - Le dais al botón "Añadir alumno" y te pedirá un nombre. Se lo das...
 - Crea una cajita arriba con el nombre y un enlace a su tabla de tareas y otro a su tabla de correos (en gestión, hace tres tablas)
 - Debajo del nombre veréis que hay dos botones, para añadir asignaturas y filas a vuestro gusto. Cada alumno las que se quiera.
