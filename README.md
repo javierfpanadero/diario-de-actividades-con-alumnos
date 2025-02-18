@@ -1,6 +1,6 @@
 # diario-de-actividades-con-alumnos
 
-**La última versión es la 6-9**
+**La última versión es la 6-10**
 
 Es un archivo html. Se trata de llevar constancia de tareas hechas y pendientes y de comunicación con familias u otros docentes.
 ![image](https://github.com/user-attachments/assets/870778ec-6834-4243-a691-0bd06488595e)
@@ -39,6 +39,7 @@ MUUUUUUY IMPORTANTE
       - Se elige el color
       - Se pone el cursor en la celda.
       - Se pulsa el botón de cambio de color
+  - El botón VACIAR "reinicia" a un alumno, borra todo el contenido de la asignaturas en todas sus tablas, dejando sólo el título tal y como lo tuvieras y dos celdas vacías debajo. (v. 6-10)
 
 - Los botones están siempre flotando a la vista y los títulos de las tablas también van bajando para que no te pierdas. El nombre del alumno y los botones de fila nueva, asignatura nueva y borrar asignatura, también te acompañan cuando te mueves en horizontal.
 
