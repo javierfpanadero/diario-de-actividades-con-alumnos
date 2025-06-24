@@ -1,6 +1,7 @@
 # diario-de-actividades-con-alumnos
 
-**La última versión es la 6-10**
+**La última versión es la 6-11**
+En esta versión hemos dejado una tabla solo por alumno. Es lo que mejor nos funciona en la práctica. Si necesitáis v6-11 con dos o tres tablas, escribidme.
 
 Es un archivo html. Se trata de llevar constancia de tareas hechas y pendientes y de comunicación con familias u otros docentes.
 ![image](https://github.com/user-attachments/assets/870778ec-6834-4243-a691-0bd06488595e)
@@ -8,7 +9,7 @@ Lo podréis abrir y editar desde un navegador (Firefox nos dio algún problema, 
 He usado muchos tutoriales, ayudas e IA para generar el código e ir retocándolo.
 Está hecho usando CSS y JavaScript, así que tiene unos botoncicos y unas funciones que a mí me solucionan mucho.
 
-El tamaño es dinámica, podéis añadir tantas asignaturas/temas y filas como queráis
+El tamaño es dinámico, podéis añadir tantas asignaturas/temas y filas como queráis
 Si te desplazas hacia abajo verás que los nombres y los títulos de las asignaturas se mueven para quedar siempre a la vista hasta que pasas a la tabla siguiente.
 En horizontal pasa igual. Recuerda que con la rueda del ratón te puedes mover también en horizontal si mantienes apretada "mayúsculas" (shift).
 Otra ayuda a la navegación es que si estás escribiendo en una asignatura, el tabulador te pasa a la fecha y a la fila siguiente.
@@ -40,7 +41,7 @@ MUUUUUUY IMPORTANTE
       - Se pone el cursor en la celda.
       - Se pulsa el botón de cambio de color
   - El botón VACIAR "reinicia" a un alumno, borra todo el contenido de la asignaturas en todas sus tablas, dejando sólo el título tal y como lo tuvieras y dos celdas vacías debajo. (v. 6-10)
-
+ - El botón BorrarFila (v 6-11) elimina la tarea y fecha de la celda donde esté el cursor.
 - Los botones están siempre flotando a la vista y los títulos de las tablas también van bajando para que no te pierdas. El nombre del alumno y los botones de fila nueva, asignatura nueva y borrar asignatura, también te acompañan cuando te mueves en horizontal.
 
 **En la versión 6-8 hemos quitado lo de poner nombre a los colores, porque esos nombres no se guardaban al guardar el diario. Se han dejado unos nombres fijos, pero se pueden cambiar muy fácilmente abriendo el archivo html, están definidos como variables CSS bastante al principio del archivo. Busca "urgente", por ejemplo y te llevará allí. Cambia los términos a tu gusto, guarda el html y ya lo tienes. Esto lo puedes hacer tantas veces como quieras sobre archivos guardados y funcionará sin problema. En ese mismo lugar podéis cambiar muchos de los colores que se usan en el diario, cambiando su código hexadecimal (o su nombre en html). Aunque no sepas HTML prueba, es fácil, por ejemplo, donde ponga cyan, pon green o el que quieras.**
