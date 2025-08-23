@@ -1,4 +1,6 @@
 # diario-de-actividades-con-alumnos
+**La última versión es la 6-11-1**
+Una pequeña mejora en legibilidad. Eliminando el espacio entre celdas (border-spacing) y cambiando el borde a un gris claro.
 
 **La última versión es la 6-11**
 En esta versión hemos dejado una tabla solo por alumno. Es lo que mejor nos funciona en la práctica. Si necesitáis v6-11 con dos o tres tablas, escribidme.
