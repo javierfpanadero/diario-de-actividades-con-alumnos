@@ -1,9 +1,9 @@
 # diario-de-actividades-con-alumnos
 **La última versión es la v7 2025**
 Añade dos botones "subir" y "bajar" que cambian las tablas de los alumnos y las asignaturas de posición.
-Si tienes el cursor en una asignatura la pasará una lugar a la izquierda (subir) o a la derecha (bajar), se puede hacer repetidas veces.
-Si tienes el cursor en el nombre del alumno en su tabla, moverá la tabla completa hacia arriba o abajo y cambiará también de posición correspondientemente el cuadro donde está su nombre y el enlace IR. Esto se puede hacer repetidas veces.
-Si tienes el cursor en el cuadro con el nombre y el enlace IR lo moverá a la izquierda o derecha, moviendo también su tabla correspondientemente. Si lo quieres hacer más de una vez, hay que volver a poner el cursor en el bloque porque al desplazarse se "sale".
+- Si tienes el cursor en una asignatura la pasará una lugar a la izquierda (subir) o a la derecha (bajar).
+- Si tienes el cursor en el nombre del alumno en su tabla, moverá la tabla completa hacia arriba o abajo y cambiará también de posición correspondientemente el cuadro donde está su nombre y el enlace IR.
+- Si tienes el cursor en el cuadro con el nombre y el enlace IR lo moverá a la izquierda o derecha, moviendo también su tabla correspondientemente. 
 
 **La versión 6-11-1**
 Una pequeña mejora en legibilidad. Eliminando el espacio entre celdas (border-spacing) y cambiando el borde a un gris claro.
