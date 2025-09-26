@@ -1,5 +1,5 @@
 # diario-de-actividades-con-alumnos
-**La última versión es la v7 2025**
+**La última versión es la v7-1 2025**
 Añade dos botones "subir" y "bajar" que cambian las tablas de los alumnos y las asignaturas de posición.
 - Si tienes el cursor en una asignatura la pasará una lugar a la izquierda (subir) o a la derecha (bajar).
 - Si tienes el cursor en el nombre del alumno en su tabla, moverá la tabla completa hacia arriba o abajo y cambiará también de posición correspondientemente el cuadro donde está su nombre y el enlace IR.
