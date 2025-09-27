@@ -1,4 +1,5 @@
 # diario-de-actividades-con-alumnos
+Vídeo explicativo https://youtu.be/LUYXbQ_LCo4
 **La última versión es la v7-1 2025**
 Añade dos botones "subir" y "bajar" que cambian las tablas de los alumnos y las asignaturas de posición.
 - Si tienes el cursor en una asignatura la pasará una lugar a la izquierda (subir) o a la derecha (bajar).
@@ -60,4 +61,3 @@ Buscando, también podéis cambiar los nombres de los botones (TOP, GUARDAR, etc
 Eso sí, sobre todo si estás editando el HTML, haz primero una copia y luego edita... por si metes la pata.
 
 Espero que os sirva. Cualquier sugerencia o comentario será muy bienvenido.
-https://youtu.be/D71oecq29po?si=M53fiY81s8R09yR6
