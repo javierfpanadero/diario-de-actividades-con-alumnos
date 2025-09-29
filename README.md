@@ -5,20 +5,8 @@ Vídeo explicativo https://youtu.be/LUYXbQ_LCo4
 Copilot de github ha simplificado y ordenado el código.
 Además se ha ampliado la función subir y bajar para que también permita subir y bajar filas de las tablas.
 
-**La versión v7-1 2025**
-Añade dos botones "subir" y "bajar" que cambian las tablas de los alumnos y las asignaturas de posición.
-- Si tienes el cursor en una asignatura la pasará una lugar a la izquierda (subir) o a la derecha (bajar).
-- Si tienes el cursor en el nombre del alumno en su tabla, moverá la tabla completa hacia arriba o abajo y cambiará también de posición correspondientemente el cuadro donde está su nombre y el enlace IR.
-- Si tienes el cursor en el cuadro con el nombre y el enlace IR lo moverá a la izquierda o derecha, moviendo también su tabla correspondientemente. 
-
-**La versión 6-11-1**
-Una pequeña mejora en legibilidad. Eliminando el espacio entre celdas (border-spacing) y cambiando el borde a un gris claro.
-
-**La versión 6-11**
-En esta versión hemos dejado una tabla solo por alumno. Es lo que mejor nos funciona en la práctica. Si necesitáis v6-11 con dos o tres tablas, escribidme.
-
 Es un archivo html. Se trata de llevar constancia de tareas hechas y pendientes y de comunicación con familias u otros docentes.
-![image](https://github.com/user-attachments/assets/870778ec-6834-4243-a691-0bd06488595e)
+<img width="1348" height="656" alt="image" src="https://github.com/user-attachments/assets/a728f90e-5362-4ee5-8d7f-bb6d26ecae5b" />
 Lo podréis abrir y editar desde un navegador (Firefox nos dio algún problema, pero en Chrome, Opera y Edge, al menos, funciona bien).
 He usado muchos tutoriales, ayudas e IA para generar el código e ir retocándolo.
 Está hecho usando CSS y JavaScript, así que tiene unos botoncicos y unas funciones que a mí me solucionan mucho.
@@ -32,11 +20,11 @@ Os describo un poco el funcionamiento, aunque diría que es bastante intuitivo. 
 
 Aquí os dejo más detalles
 
-- Cuando lo abráis veréis que está en BLANCO, no se me asusten.
+- Cuando lo abráis veréis que está vacío, no se me asusten.
 - Le dais al botón "Añadir alumno" y te pedirá un nombre. Se lo das...
-- Crea una cajita arriba con el nombre y un enlace a su tabla de tareas y otro a su tabla de correos (en gestión, hace tres tablas)
+- Crea una cajita arriba con el nombre y un enlace a su tabla de tareas.
 - Debajo del nombre veréis que hay dos botones, para añadir asignaturas y filas a vuestro gusto. Cada alumno las que se quiera.
-- También tenéis un botón para borrar alumno. Se cargará la caja azul de enlaces y sus dos tablas.
+- También tenéis un botón para borrar alumno. Se cargará la caja azul de enlaces y su tabla de tareas.
 - Para borrar asignatura, pon el cursor en cualquier asignatura de cualquier alumno y pulsa cualquier botón de borrar asignatura. Pedirá confirmación.
 - Aunque se hayan hecho enlaces y tal, podéis editar el nombre de los chavales si queréis, eso sí, intentad no dar dos nombres iguales cuando los creéis que tendréis problemas con los enlaces.
 - Los títulos de las asignaturas son editables también desde el navegador y todas las celdas donde escribir información.
@@ -44,25 +32,28 @@ Aquí os dejo más detalles
 MUUUUUUY IMPORTANTE
 - Todo lo que hagas en el navegador SE PERDERÁ SI NO LO GUARDAS, aunque siempre que intentes cerrar te dará una alerta para que no se te olvide.
 - Para guardar tenéis un botón que DESCARGA UNA VERSIÓN DEL DIARIO rellena con lo que TENGÁIS EN LA PANTALLA EN ESE MOMENTO. Con el nombre DIARIO_FECHA_HORA
-- Para seguir trabajando otro día, abre el último archivo y parte de ahí.
+- Para seguir trabajando otro día, abre el último diario guardado y parte de ahí.
 - Sería bueno también que fuéramos subiendo backups a la nube y tener al menos el del día anterior o dos días, por si acaso.
 
 - El resto de botones:
   - TOP te lleva hasta el principio de la página
-  - NEGRITA Y RESALTADO hacen lo propio. Pulsando cambias de activado a desactivado y viceversa.
-  - El botón de color, colorea toda la celda, hay que elegir primero qué opción de las cinco, o bien volver a BLANCO o poner el gris de HECHO.
+  - NEGRITA Y RESALTADO hacen lo propio. Pulsando cambias de activado a desactivado.
+  - El botón de color, colorea toda la celda, hay que elegir primero qué opción de color.
       - Se elige el color
       - Se pone el cursor en la celda.
       - Se pulsa el botón de cambio de color
-  - El botón VACIAR "reinicia" a un alumno, borra todo el contenido de la asignaturas en todas sus tablas, dejando sólo el título tal y como lo tuvieras y dos celdas vacías debajo. (v. 6-10)
- - El botón BorrarFila (v 6-11) elimina la tarea y fecha de la celda donde esté el cursor.
-- Los botones están siempre flotando a la vista y los títulos de las tablas también van bajando para que no te pierdas. El nombre del alumno y los botones de fila nueva, asignatura nueva y borrar asignatura, también te acompañan cuando te mueves en horizontal.
+  - El botón REINICIAR "reinicia" a un alumno, borra todo el contenido de la asignaturas en todas sus tablas, dejando sólo el título tal y como lo tuvieras y dos celdas vacías debajo. (v. 6-10)
+ - El botón BorrarFila elimina la tarea y fecha de la celda donde esté el cursor.
+ - Los botones "subir" y "bajar":
+    - Si tienes el cursor en una asignatura la pasará un lugar a la izquierda (subir) o a la derecha (bajar).
+    - Si tienes el cursor en el nombre del alumno en su tabla, moverá la tabla completa hacia arriba o abajo y cambiará también de posición correspondientemente el cuadro donde está su nombre y el enlace IR.
+    - Si tienes el cursor en el cuadro con el nombre y el enlace IR lo moverá a la izquierda o derecha, moviendo también su tabla correspondientemente.
+    - Si tienes el cursor en una tarea la moverá hacia arriba o hacia abajo 
 
-**En la versión 6-8 hemos quitado lo de poner nombre a los colores, porque esos nombres no se guardaban al guardar el diario. Se han dejado unos nombres fijos, pero se pueden cambiar muy fácilmente abriendo el archivo html, están definidos como variables CSS bastante al principio del archivo. Busca "urgente", por ejemplo y te llevará allí. Cambia los términos a tu gusto, guarda el html y ya lo tienes. Esto lo puedes hacer tantas veces como quieras sobre archivos guardados y funcionará sin problema. En ese mismo lugar podéis cambiar muchos de los colores que se usan en el diario, cambiando su código hexadecimal (o su nombre en html). Aunque no sepas HTML prueba, es fácil, por ejemplo, donde ponga cyan, pon green o el que quieras.**
-**La versión 6-9 arregla un bug y permite cambiar el color de la letras del botón de color independientemente del color de las letras de los otros botones**
+- Los botones están siempre flotando a la vista, si no lo ves así podría ser porque no tuvieras el zoom a 100%.
 
-Buscando, también podéis cambiar los nombres de los botones (TOP, GUARDAR, etc.). Otras cosas las podéis editar directamente en el diario desde el navegador: El título "Diario 6-8", nombres de alumnos (aunque los hayáis creado con uno concreto), títulos de tablas. Si quieres editar algo, prueba a hacerlo desde el navegador y si no ya en el código HTML.
+Si abres el archivo html con un editor de texto plano puedes cambiar los nombres de las opciones de color, de los botones, colores, grosores de líneas de tablas, etc. Se han intentado dejar las opciones como variables al principio del CSS para que sea más fácil de personalizar.
 
-Eso sí, sobre todo si estás editando el HTML, haz primero una copia y luego edita... por si metes la pata.
+Si no sabes mucho, prueba a buscar la palabra que quieres cambiar, por ejemplo, "exámenes" y verás donde aparece y podrás sustituirla con facilidad. Eso sí, haz primero una copia y luego edita... que tocando el código siempre se corre el riesgo de liarla. Los colores están a veces definidos por su nombre y otras veces por su código hexadecimal, si quieres cambiarlos consulta cómo se denominan, no es difícil.
 
 Espero que os sirva. Cualquier sugerencia o comentario será muy bienvenido.
