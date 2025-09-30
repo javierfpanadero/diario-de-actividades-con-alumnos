@@ -1,9 +1,10 @@
 # diario-de-actividades-con-alumnos
 Vídeo explicativo https://youtu.be/LUYXbQ_LCo4
 
-**La última versión es la DiarioCopilotv3**
+**La última versión es la DiarioCopilotv3-1**
 Copilot de github ha simplificado y ordenado el código.
 Además se ha ampliado la función subir y bajar para que también permita subir y bajar filas de las tablas.
+(Problema menor arreglado, consistencia entre el color que pone en el botón y el que se aplica cuando se abre un diario guardado)
 
 Es un archivo html. Se trata de llevar constancia de tareas hechas y pendientes y de comunicación con familias u otros docentes.
 <img width="1348" height="656" alt="image" src="https://github.com/user-attachments/assets/a728f90e-5362-4ee5-8d7f-bb6d26ecae5b" />
