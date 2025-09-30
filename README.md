@@ -1,6 +1,8 @@
 # diario-de-actividades-con-alumnos
 Vídeo explicativo https://youtu.be/LUYXbQ_LCo4
 
+**La versión DiarioCopilotv3-2** es la misma que la 3-1 pero con una paleta de colores aplicada a los botones y una ordenación por si os gusta
+
 **La última versión es la DiarioCopilotv3-1**
 Copilot de github ha simplificado y ordenado el código.
 Además se ha ampliado la función subir y bajar para que también permita subir y bajar filas de las tablas.
