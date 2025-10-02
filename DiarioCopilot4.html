@@ -1,0 +1,775 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <!-- Diario de Tareas 
+    Javier Fernández Panadero
+    @javierfpanadero
+    http://lacienciaparatodos.wordpress.com
+    12 oct 2024
+    VERSIÓN mejorada copilot github 29-09-25
+    Hecho con la ayuda de amigos, compañeros, IAs y muchos cabezazos
+    Licencia CC-By
+    Juntos somos más -->
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DIARIO</title>
+    <style>
+        :root {
+            --nombreColorOption1:'Exámenes/Urgente';
+            --nombreColorOption2:'Enviado';
+            --nombreColorOption3:'Asignación';
+            --nombreColorOption4:'Papeleo';
+            --nombreColorOption5:'Otros';
+            --colorFondoCajaAlumno: PaleGreen;
+            --colorCajaNombreAlumno: #F8E6F3;
+            --colorCajaAsignatura: PaleGreen;
+            --colorBotones: #241E4E;
+            --colorLetrasBotonesFlotantes: white;
+            --colorLetrasBotonColor: darkblue;
+            --colorResalte: yellow;
+            --colorAlertaSeleccion: red;
+            --colorFondoCambioColor: #f9f9f9;
+            --colorPrimero: #ffcccc;
+            --colorSegundo: #ccffcc;
+            --colorTercero: #ccccff;
+            --colorCuarto: #ffffcc;
+            --colorQuinto: #ffccff;
+            --colorBlanco: #ffffff;
+            --colorHecho: #d0d0d0;
+        }
+        body {
+            width: auto;
+        }
+        .parrafo1::before { content: var(--nombreColorOption1); }
+        .parrafo2::before { content: var(--nombreColorOption2); }
+        .parrafo3::before { content: var(--nombreColorOption3); }
+        .parrafo4::before { content: var(--nombreColorOption4); }
+        .parrafo5::before { content: var(--nombreColorOption5); }
+        .editableTable {
+            display: inline-block;
+            vertical-align: top;
+            border-spacing: 0px;
+        }
+        .alumnoBlock { width: max-content; position: relative; }
+        .alumnoContainer { margin-bottom: 20px; }
+        .containerEnlaces {
+            display: flex;
+            flex-wrap: wrap;
+            max-width: 1280px;
+        }
+        .item {
+            background-color: var(--colorFondoCajaAlumno);
+            margin: 5px;
+            padding: 10px;
+            border-radius: 5px;
+            position: relative;
+            width: fit-content;
+        }
+        .item button {
+            background-color: #FF4C4C;
+            border: none;
+            color: white;
+            padding: 5px 8px;
+            margin-top: 5px;
+            cursor: pointer;
+            border-radius: 3px;
+        }
+        .item button:hover { background-color: #FF0000; }
+        .stickyalumno {
+            display: table-header-group;
+            position: sticky;
+            background-color: var(--colorCajaNombreAlumno);
+            z-index: 5;
+            top: 0;
+            left: 10px;
+            width: 800px;
+        }
+        .editableTable thead {
+            position: sticky;
+            top: var(--stickyalumno-height, 100px);
+            background-color: #b2b2b2;
+            z-index: 5;
+        }
+        .container {
+            display: flex;
+            width: auto;
+            border: black 1px solid; 
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: left;
+            height: 20px;
+        }
+        th { background-color: var(--colorCajaAsignatura); }
+        .col-75 { width: 270px; }
+        .col-25 { width: 50px; }
+        .floating-buttons {
+            position: fixed;
+            background-color: white;
+            top: 10px;
+            right: 10px;
+            display: flex;
+            flex-direction: row;
+            gap: 5px;
+            z-index: 1000;
+        }
+        .floating-buttons button, .floating-buttons a {
+            padding: 5px 10px;
+            background-color: var(--colorBotones);
+            border: 1px solid black;
+            border-radius: 3px;
+            cursor: pointer;
+            text-decoration: none;
+            color: var(--colorLetrasBotonesFlotantes);
+        }
+        .highlight { background-color: var(--colorResalte); }
+        .grey-bg { background-color: var(--colorHecho); }
+        .color-button {
+            padding: 10px 15px;
+            font-size: 16px;
+            border: none;
+            cursor: pointer;
+            background-color: #ffcccc;
+            color: black;
+            transition: background-color 0.3s;
+        }
+        .dropdown-arrow {
+            padding: 10px 5px;
+            background-color: rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+        }
+        .dropdown-arrow::after {
+            content: "▼";
+            font-size: 12px;
+        }
+        .color-options {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background-color: var(--colorFondoCambioColor);
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+        }
+        .color-option {
+            padding: 5px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+        }
+        .color-option:hover { background-color: #f1f1f1; }
+        .color-swatch {
+            width: 20px;
+            height: 20px;
+            margin-right: 10px;
+            border: 1px solid #ddd;
+        }
+    </style>
+</head>
+<body>
+<h1 contenteditable="true" id="anchor0">DIARIO Copilot v3-2<br></h1>
+
+<div class="floating-buttons">
+    <button onclick="window.location.href='#top';"><b>TOP</b></button>
+    <button id="saveButton" title="Descarga un archivo DIARIO_DÍA_HORA"><b>GUARDAR</b></button>
+    <button class="color-button" id="colorButton" onclick="aplicarColor()" title="Elige primero opción en el desplegable, click en la celda y luego click en el botón" style="color: white;"><b>COLOR</b></button>
+    <div class="dropdown-arrow" onclick="toggleColorOptions(event)"></div>
+    <div class="color-options" id="colorOptions">
+        <div class="color-option" onclick="seleccionarColor('var(--colorPrimero)', 'Primero', event)">
+            <div class="color-swatch" style="background-color: var(--colorPrimero);"></div>
+            <p class="parrafo1"></p>
+        </div>
+        <div class="color-option" onclick="seleccionarColor('var(--colorSegundo)', 'Segundo', event)">
+            <div class="color-swatch" style="background-color: var(--colorSegundo);"></div>
+            <p class="parrafo2"></p>
+        </div>
+        <div class="color-option" onclick="seleccionarColor('var(--colorTercero)', 'Tercero', event)">
+            <div class="color-swatch" style="background-color: var(--colorTercero);"></div>
+            <p class="parrafo3"></p>
+        </div>
+        <div class="color-option" onclick="seleccionarColor('var(--colorCuarto)', 'Cuarto', event)">
+            <div class="color-swatch" style="background-color: var(--colorCuarto);"></div>
+            <p class="parrafo4"></p>
+        </div>
+        <div class="color-option" onclick="seleccionarColor('var(--colorQuinto)', 'Quinto', event)">
+            <div class="color-swatch" style="background-color: var(--colorQuinto);"></div>
+            <p class="parrafo5"></p>
+        </div>
+        <div class="color-option" onclick="seleccionarColor('var(--colorBlanco)', 'Blanco', event)">
+            <div class="color-swatch" style="background-color: var(--colorBlanco);"></div>
+            <p>BLANCO</p>
+        </div>
+        <div class="color-option" onclick="seleccionarColor('var(--colorHecho)', 'Hecho', event)">
+            <div class="color-swatch" style="background-color: var(--colorHecho);"></div>
+            <p>HECHO</p>
+        </div>
+    </div>
+    <button onclick="toggleBold()" title="Negrita" style=background-color:white;color:black;font-size:1.1em;><b>BOLD</b></button>
+    <button onclick="toggleHighlight()" title="Cursiva" style=background-color:yellow;color:black><b>HIGH</b></button>
+    <button onclick="borrarFila()" title="Borra Fila donde esté el cursor" style=background-color:red><b>BORRFILA</b></button>
+	<button onclick="addAlumno()" title="Añadir alumno" style=background-color:#882BF3><b>NEW</b></button>
+	<button onclick="vaciarTodasLasAsignaturas()" title="Vaciar todas las tablas de asignaturas de un alumno"><b>REBOOT</b></button>
+	<button id="toggleEditable" title="Cambia a modo selección para poder copiar contenido de las tablas"><b>EDIT</b></button>
+	<button onclick="moverAdelante()" title="Mover elemento hacia adelante/arriba" style=background-color:#2FEE4C><b>UP</b></button>
+    <button onclick="moverAtras()" title="Mover elemento hacia atrás/abajo" style=background-color:#EE2FD1><b>DOWN</b></button>
+	
+</div>
+<div id="containerEnlaces" class="containerEnlaces"></div>
+<div id="tareas"></div>
+
+<script>
+    // Añade filas a las asignaturas de un alumno solo
+    function addFiles() {
+        var div = event.target.closest(".stickyalumno").nextElementSibling;
+        var tables = div.getElementsByClassName("editableTable");
+        Array.from(tables).forEach(function(table) {
+            var row = table.insertRow(-1);
+            var cell1 = row.insertCell(0);
+            var cell2 = row.insertCell(1);
+            cell1.innerHTML = "";
+            cell2.innerHTML = "";
+            cell1.contentEditable = "true";
+            cell2.contentEditable = "true";
+        });
+    }
+
+    function addAsignatura() {
+        var tablaPrimera = event.target.closest(".stickyalumno").nextElementSibling.firstElementChild;
+        var tablaClonada = tablaPrimera.cloneNode(true);
+        var celdas = tablaClonada.getElementsByTagName("td");
+        for (var i = 0; i < celdas.length; i++) {
+            celdas[i].innerHTML = "";
+            celdas[i].style.backgroundColor = 'white';
+        }
+        var titulos = tablaClonada.getElementsByTagName("th");
+        titulos[0].innerHTML = "Asignatura";
+        titulos[1].innerHTML = "Fechas";
+        var nuevoDiv = event.target.closest(".stickyalumno").nextElementSibling
+        nuevoDiv.appendChild(tablaClonada);
+    }
+
+    function toggleHighlight() {
+        const selection = window.getSelection();
+        if (!selection.rangeCount) return;
+        const range = selection.getRangeAt(0);
+        if (range.startContainer.parentNode.classList.contains('highlight')) {
+            range.startContainer.parentNode.outerHTML = range.startContainer.parentNode.innerHTML;
+        } else {
+            const span = document.createElement('span');
+            span.className = 'highlight';
+            range.surroundContents(span);
+        }
+    }
+
+    function toggleBold() {
+        document.execCommand('bold', false, null);
+    }
+
+    document.getElementById('saveButton').addEventListener('click', function() {
+        const pageContent = document.documentElement.outerHTML;
+        const blob = new Blob([pageContent], {type: 'text/html'});
+        const link = document.createElement('a');
+        const now = new Date();
+        const date = now.toISOString().slice(0,10);
+        const time = now.toTimeString().slice(0,8).replace(/:/g, '-');
+        const fileName = `DIARIO_${date}_${time}.html`;
+        link.href = URL.createObjectURL(blob);
+        link.download = fileName;
+        link.click();
+        URL.revokeObjectURL(link.href);
+    });
+
+    function addAlumno(){
+        const nombreAlumno = prompt("Introduce el nombre del Alumno:");
+        if (!nombreAlumno) {
+            alert("El nombre del alumno es necesario.");
+            return;
+        }
+        const alumnoContainer = document.createElement("div");
+        alumnoContainer.className = "alumnoContainer";
+        alumnoContainer.setAttribute("data-alumno", nombreAlumno);
+        alumnoContainer.innerHTML = `
+            <div class="alumnoBlock">
+                <div class="stickyalumno"> 
+                    <table><tr>
+                        <td style="font-size: 2em; font-weight: bold;" id="${nombreAlumno}" contenteditable="true"> ${nombreAlumno} </h1></td>
+                        <td contenteditable="true" title="Escribe aquí notas a procesar, alertas, etc."><b>INBOX</b></td>
+                    </tr></table>
+                    <button onclick="addFiles()">Añadir fila</button>
+                    <button onclick="addAsignatura()">Añadir Asignatura</button>
+                    <button style = "background: lightYellow;" onclick="borrarAsignatura()">🗑️ Borrar Asignatura</button>
+                </div>
+                <div class="container">
+                    <table class="editableTable">	
+                        <thead>
+                            <tr>
+                                <th class="col-75" contenteditable="true">Asignatura</th>
+                                <th class="col-25" contenteditable="true">Fechas</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td contenteditable="true" class="col-75"></td><td contenteditable="true" class="col-25"></td></tr>
+                            <tr><td contenteditable="true" class="col-75"></td><td contenteditable="true" class="col-25"></td></tr>				      
+                        </tbody>
+                    </table>
+					<table class="editableTable">	
+                        <thead>
+                            <tr>
+                                <th class="col-75" contenteditable="true">Asignatura</th>
+                                <th class="col-25" contenteditable="true">Fechas</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td contenteditable="true" class="col-75"></td><td contenteditable="true" class="col-25"></td></tr>
+                            <tr><td contenteditable="true" class="col-75"></td><td contenteditable="true" class="col-25"></td></tr>				      
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        `;
+        document.getElementById("tareas").appendChild(alumnoContainer);
+        const para2 = document.createElement("div");
+        para2.className = "item";
+        para2.id = `item-${nombreAlumno}`;
+        para2.innerHTML = `
+            <h2 contenteditable="true" align="center">${nombreAlumno}</h2>
+            <h3 align="center"><a href="#${nombreAlumno}">IR</a></h3>
+            <button onclick="borrarAlumno('${nombreAlumno}')">🗑️ Borrar Alumno</button>
+        `;
+        document.getElementById("containerEnlaces").appendChild(para2);
+    }
+
+    function borrarAlumno(nombreAlumno) {
+        if (!nombreAlumno) {
+            alert("Nombre de alumno no proporcionado.");
+            return;
+        }
+        if (!confirm(`¿Estás seguro de que deseas borrar al alumno "${nombreAlumno}"?`)) return;
+        document.querySelectorAll(`.alumnoContainer[data-alumno="${nombreAlumno}"]`).forEach(container => container.remove());
+        const itemDiv = document.getElementById(`item-${nombreAlumno}`);
+        if (itemDiv) itemDiv.remove();
+        alert(`Alumno "${nombreAlumno}" ha sido borrado.`);
+    }
+
+    function borrarAsignatura() {
+        if (!confirm(`¿Estás seguro de que deseas borrar la ASIGNATURA?`)) return;
+        let selection = window.getSelection();
+        if (selection.rangeCount > 0) {
+            let node = selection.getRangeAt(0).commonAncestorContainer;
+            if (node.nodeType === Node.TEXT_NODE) node = node.parentNode;
+            let tableElement = node.closest && node.closest('table');
+            if (tableElement) tableElement.remove();
+        }
+    }
+
+    window.addEventListener('beforeunload', function (e) {
+        e.returnValue = "¿Estás seguro de que deseas abandonar esta página? Los cambios no guardados se perderán.";
+        return e.returnValue;
+    });
+
+    let colorSeleccionado = '#ffffff';
+    let nombreSeleccionado = 'BLANCO';
+    const colorButton = document.getElementById('colorButton');
+    const colorOptions = document.getElementById('colorOptions');
+    function toggleColorOptions(event) {
+        event.stopPropagation();
+        colorOptions.style.display = colorOptions.style.display === 'block' ? 'none' : 'block';
+    }
+    document.addEventListener('click', () => { colorOptions.style.display = 'none'; });
+
+    function getCSS(variableName) {
+        return getComputedStyle(document.documentElement)
+            .getPropertyValue(variableName)
+            .trim()
+            .replace(/['"]+/g, '');
+    }
+    function seleccionarColor(color, nombre, event) {
+        event.stopPropagation();
+        colorSeleccionado = color;
+        nombreSeleccionado = nombre;
+        colorButton.style.backgroundColor = color;
+        colorButton.style.fontWeight = 'bold';
+		colorButton.style.color = getCSS('--colorLetrasBotonColor');
+        switch (nombreSeleccionado) {
+            case "Primero": colorButton.textContent = getCSS('--nombreColorOption1'); break;
+            case "Segundo": colorButton.textContent = getCSS('--nombreColorOption2'); break;
+            case "Tercero": colorButton.textContent = getCSS('--nombreColorOption3'); break;
+            case "Cuarto":  colorButton.textContent = getCSS('--nombreColorOption4'); break;
+            case "Quinto":  colorButton.textContent = getCSS('--nombreColorOption5'); break;
+            case "Blanco":  colorButton.textContent = 'BLANCO'; break;
+            case "Hecho":   colorButton.textContent = 'HECHO'; break;
+        }
+        colorOptions.style.display = 'none';
+    }
+    function aplicarColor() {
+        let selection = window.getSelection();
+        if (selection.rangeCount > 0) {
+            let celda = selection.getRangeAt(0).commonAncestorContainer;
+            while (celda && celda.nodeName !== 'TD') celda = celda.parentNode;
+            if (celda && celda.nodeName === 'TD') {
+                celda.style.backgroundColor = colorSeleccionado;
+            } else {
+                alert('Por favor, selecciona texto dentro de una celda de la tabla antes de cambiar el color.');
+            }
+        } else {
+            alert('Por favor, selecciona texto dentro de una celda de la tabla antes de cambiar el color.');
+        }
+    }
+
+    let editableActivado = true;
+    function toggleEditable() {
+        editableActivado = !editableActivado;
+        document.querySelectorAll('[contenteditable]').forEach(elemento => elemento.contentEditable = editableActivado);
+        const boton = document.getElementById('toggleEditable');
+        boton.textContent = editableActivado ? 'EDICIÓN' : 'SELECCIÓN';
+        boton.style.fontWeight = 'bold';
+        boton.style.backgroundColor = editableActivado ? '' : 'var(--colorAlertaSeleccion)';
+    }
+    document.getElementById('toggleEditable').addEventListener('click', toggleEditable);
+
+    (function() {
+        function updateStickyElements() {
+            document.querySelectorAll('.alumnoBlock').forEach(block => {
+                const stickyAlumno = block.querySelector('.stickyalumno');
+                const thead = block.querySelector('.editableTable thead');
+                if (stickyAlumno && thead) {
+                    const stickyAlumnoHeight = stickyAlumno.offsetHeight;
+                    block.style.setProperty('--stickyalumno-height', `${stickyAlumnoHeight}px`);
+                    thead.style.top = `var(--stickyalumno-height, 0px)`;
+                }
+            });
+        }
+        function setupResizeObserver() {
+            const resizeObserver = new ResizeObserver(entries => {
+                for (let entry of entries) {
+                    const alumnoBlock = entry.target.closest('.alumnoBlock');
+                    if (alumnoBlock) updateStickyElements();
+                }
+            });
+            document.querySelectorAll('.stickyalumno').forEach(stickyAlumno => resizeObserver.observe(stickyAlumno));
+        }
+        function initializeScript() {
+            updateStickyElements();
+            setupResizeObserver();
+        }
+        initializeScript();
+        window.addEventListener('resize', updateStickyElements);
+        window.addEventListener('load', initializeScript);
+        new MutationObserver(mutations => {
+            mutations.forEach(mutation => {
+                if (mutation.type === 'childList') initializeScript();
+            });
+        }).observe(document.body, { childList: true, subtree: true });
+    })();
+
+    function vaciarTodasLasAsignaturas() {
+        if (!confirm(`¿Estás seguro de que deseas REINICIAR ALUMNO?`)) return;
+        let selection = window.getSelection();
+        if (selection.rangeCount > 0) {
+            let selectedNode = selection.getRangeAt(0).commonAncestorContainer;
+            if (selectedNode.nodeType === Node.TEXT_NODE) selectedNode = selectedNode.parentNode;
+            let alumnoContainer = null;
+            while (selectedNode && !alumnoContainer) {
+                if (selectedNode.classList && selectedNode.classList.contains('alumnoContainer')) alumnoContainer = selectedNode;
+                else selectedNode = selectedNode.parentNode;
+            }
+            if (alumnoContainer) {
+                alumnoContainer.querySelectorAll('.editableTable').forEach(tabla => {
+                    let titulos = Array.from(tabla.querySelectorAll('th')).map(th => th.innerHTML);
+                    let thead = '<thead><tr>';
+                    titulos.forEach(titulo => thead += `<th contenteditable="true">${titulo}</th>`);
+                    thead += '</tr></thead>';
+                    tabla.innerHTML = `${thead}<tbody>
+                        <tr><td class="col-75" contenteditable="true"></td><td class="col-25" contenteditable="true"></td></tr>
+                        <tr><td class="col-75" contenteditable="true"></td><td class="col-25" contenteditable="true"></td></tr>
+                    </tbody>`;
+                });
+            } else alert('Por favor, selecciona un alumno primero.');
+        } else alert('Por favor, selecciona un alumno primero.');
+    }
+
+    function borrarFila() {
+        if (!confirm("¿Estás seguro de que deseas borrar esta FILA?")) return;
+        let selection = window.getSelection();
+        if (!selection.rangeCount) { alert("No hay selección activa."); return; }
+        let node = selection.getRangeAt(0).commonAncestorContainer;
+        while (node && node.nodeType !== 1) node = node.parentNode;
+        let row = node.closest("tr");
+        if (row && row.parentNode && row.parentNode.tagName === "TBODY") row.remove();
+        else alert("No se encontró una fila válida para borrar.");
+    }
+
+    // FUNCIONES DE MOVIMIENTO
+
+	function ponerFocoEnFila(fila, celdaIndex) {
+    // Intenta devolver el foco a la celda que tenía el foco antes de mover la fila
+    let celdas = fila.querySelectorAll('td[contenteditable="true"]');
+    if (celdas.length === 0) return;
+    let celda = celdas[celdaIndex] || celdas[0];
+    let range = document.createRange();
+    range.selectNodeContents(celda);
+    range.collapse(true);
+    let sel = window.getSelection();
+    sel.removeAllRanges();
+    sel.addRange(range);
+    celda.focus();
+}
+
+	function ponerFocoEnPrimeraCelda(elemento) {
+    let celda = elemento.querySelector('td[contenteditable="true"], [contenteditable="true"]:not(td)');
+    if (celda) {
+        let range = document.createRange();
+        range.selectNodeContents(celda);
+        range.collapse(true);
+        let sel = window.getSelection();
+        sel.removeAllRanges();
+        sel.addRange(range);
+        celda.focus();
+    }
+}
+
+	function moverAdelante() {
+    let selection = window.getSelection();
+    if (!selection.rangeCount) {
+        alert("No hay selección activa.");
+        return;
+    }
+    let node = selection.getRangeAt(0).commonAncestorContainer;
+    if (node.nodeType === Node.TEXT_NODE) node = node.parentNode;
+
+    // 1. Si está en una fila de una tabla de asignatura (editableTable)
+    let fila = node.closest('tr');
+    let tablaAsignatura = node.closest('.editableTable');
+    if (fila && tablaAsignatura && fila.parentNode && fila.parentNode.tagName === "TBODY") {
+        let tbody = fila.parentNode;
+        if (tbody.children.length > 1) {
+            let anterior = fila.previousElementSibling;
+            if (anterior) {
+                let celdas = Array.from(fila.querySelectorAll('td[contenteditable="true"]'));
+                let focused = document.activeElement;
+                let celdaIndex = celdas.indexOf(focused);
+                tbody.insertBefore(fila, anterior);
+                setTimeout(() => ponerFocoEnFila(fila, celdaIndex), 10);
+            }
+        }
+        return;
+    }
+
+    // 2. Si está en la cabecera de una tabla de asignatura (editableTable)
+    let th = node.closest('th');
+    if (th && th.closest('.editableTable')) {
+        let tabla = th.closest('.editableTable');
+        let anterior = tabla.previousElementSibling;
+        if (anterior) {
+            tabla.parentNode.insertBefore(tabla, anterior);
+            setTimeout(() => ponerFocoEnPrimeraCelda(tabla), 10);
+        }
+        return;
+    }
+
+    // 3. Si está en la tabla de cabecera (nombre del alumno/INBOX)
+    let tablaCabecera = node.closest('table');
+    if (tablaCabecera && !tablaCabecera.classList.contains('editableTable')) {
+        let alumnoContainer = tablaCabecera.closest('.alumnoContainer');
+        if (alumnoContainer) {
+            let anterior = alumnoContainer.previousElementSibling;
+            if (anterior) {
+                alumnoContainer.parentNode.insertBefore(alumnoContainer, anterior);
+                let nombre = alumnoContainer.getAttribute('data-alumno');
+                let item = document.getElementById(`item-${nombre}`);
+                if (item) {
+                    let itemAnterior = item.previousElementSibling;
+                    if (itemAnterior) item.parentNode.insertBefore(item, itemAnterior);
+                }
+                setTimeout(() => ponerFocoEnPrimeraCelda(alumnoContainer), 10);
+            }
+            return;
+        }
+    }
+
+    // 4. Si está en cualquier parte de alumnoContainer (pero NO en tabla de asignatura)
+    let alumnoContainer = node.closest('.alumnoContainer');
+    if (alumnoContainer && !node.closest('.editableTable')) {
+        let anterior = alumnoContainer.previousElementSibling;
+        if (anterior) {
+            alumnoContainer.parentNode.insertBefore(alumnoContainer, anterior);
+            let nombre = alumnoContainer.getAttribute('data-alumno');
+            let item = document.getElementById(`item-${nombre}`);
+            if (item) {
+                let itemAnterior = item.previousElementSibling;
+                if (itemAnterior) item.parentNode.insertBefore(item, itemAnterior);
+            }
+            setTimeout(() => ponerFocoEnPrimeraCelda(alumnoContainer), 10);
+        }
+        return;
+    }
+
+    // 5. Item de enlace
+    let item = node.closest('.item');
+    if (item) {
+        let anterior = item.previousElementSibling;
+        if (anterior) {
+            item.parentNode.insertBefore(item, anterior);
+            let nombre = item.id.replace('item-', '');
+            let alumnoContainer = document.querySelector(`.alumnoContainer[data-alumno="${nombre}"]`);
+            if (alumnoContainer) {
+                let alumnoAnterior = alumnoContainer.previousElementSibling;
+                if (alumnoAnterior) alumnoContainer.parentNode.insertBefore(alumnoContainer, alumnoAnterior);
+            }
+            setTimeout(() => ponerFocoEnPrimeraCelda(item), 10);
+        }
+        return;
+    }
+
+    alert("No se encontró un elemento válido para mover. Selecciona una tabla, fila de tabla, nombre de alumno o un enlace.");
+}
+
+	function moverAtras() {
+    let selection = window.getSelection();
+    if (!selection.rangeCount) {
+        alert("No hay selección activa.");
+        return;
+    }
+    let node = selection.getRangeAt(0).commonAncestorContainer;
+    if (node.nodeType === Node.TEXT_NODE) node = node.parentNode;
+
+    // 1. Si está en una fila de una tabla de asignatura (editableTable)
+    let fila = node.closest('tr');
+    let tablaAsignatura = node.closest('.editableTable');
+    if (fila && tablaAsignatura && fila.parentNode && fila.parentNode.tagName === "TBODY") {
+        let tbody = fila.parentNode;
+        if (tbody.children.length > 1) {
+            let siguiente = fila.nextElementSibling;
+            if (siguiente) {
+                let celdas = Array.from(fila.querySelectorAll('td[contenteditable="true"]'));
+                let focused = document.activeElement;
+                let celdaIndex = celdas.indexOf(focused);
+                tbody.insertBefore(siguiente, fila);
+                setTimeout(() => ponerFocoEnFila(fila, celdaIndex), 10);
+            }
+        }
+        return;
+    }
+
+    // 2. Si está en la cabecera de una tabla de asignatura (editableTable)
+    let th = node.closest('th');
+    if (th && th.closest('.editableTable')) {
+        let tabla = th.closest('.editableTable');
+        let siguiente = tabla.nextElementSibling;
+        if (siguiente) {
+            tabla.parentNode.insertBefore(siguiente, tabla);
+            setTimeout(() => ponerFocoEnPrimeraCelda(tabla), 10);
+        }
+        return;
+    }
+
+    // 3. Si está en la tabla de cabecera (nombre del alumno/INBOX)
+    let tablaCabecera = node.closest('table');
+    if (tablaCabecera && !tablaCabecera.classList.contains('editableTable')) {
+        let alumnoContainer = tablaCabecera.closest('.alumnoContainer');
+        if (alumnoContainer) {
+            let siguiente = alumnoContainer.nextElementSibling;
+            if (siguiente) {
+                alumnoContainer.parentNode.insertBefore(siguiente, alumnoContainer);
+                let nombre = alumnoContainer.getAttribute('data-alumno');
+                let item = document.getElementById(`item-${nombre}`);
+                if (item) {
+                    let itemSiguiente = item.nextElementSibling;
+                    if (itemSiguiente) item.parentNode.insertBefore(itemSiguiente, item);
+                }
+                setTimeout(() => ponerFocoEnPrimeraCelda(alumnoContainer), 10);
+            }
+            return;
+        }
+    }
+
+    // 4. Si está en cualquier parte de alumnoContainer (pero NO en tabla de asignatura)
+    let alumnoContainer = node.closest('.alumnoContainer');
+    if (alumnoContainer && !node.closest('.editableTable')) {
+        let siguiente = alumnoContainer.nextElementSibling;
+        if (siguiente) {
+            alumnoContainer.parentNode.insertBefore(siguiente, alumnoContainer);
+            let nombre = alumnoContainer.getAttribute('data-alumno');
+            let item = document.getElementById(`item-${nombre}`);
+            if (item) {
+                let itemSiguiente = item.nextElementSibling;
+                if (itemSiguiente) item.parentNode.insertBefore(itemSiguiente, item);
+            }
+            setTimeout(() => ponerFocoEnPrimeraCelda(alumnoContainer), 10);
+        }
+        return;
+    }
+
+    // 5. Item de enlace
+    let item = node.closest('.item');
+    if (item) {
+        let siguiente = item.nextElementSibling;
+        if (siguiente) {
+            item.parentNode.insertBefore(siguiente, item);
+            let nombre = item.id.replace('item-', '');
+            let alumnoContainer = document.querySelector(`.alumnoContainer[data-alumno="${nombre}"]`);
+            if (alumnoContainer) {
+                let alumnoSiguiente = alumnoContainer.nextElementSibling;
+                if (alumnoSiguiente) alumnoContainer.parentNode.insertBefore(alumnoSiguiente, alumnoContainer);
+            }
+            setTimeout(() => ponerFocoEnPrimeraCelda(item), 10);
+        }
+        return;
+    }
+
+    alert("No se encontró un elemento válido para mover. Selecciona una tabla, fila de tabla, nombre de alumno o un enlace.");
+}
+window.addEventListener('DOMContentLoaded', function() {
+    // Sincroniza el color y nombre seleccionados con el botón al cargar (diario guardado)
+    const colorButton = document.getElementById('colorButton');
+    const texto = colorButton.textContent.trim();
+    function getCSS(variableName) {
+        return getComputedStyle(document.documentElement)
+            .getPropertyValue(variableName)
+            .trim()
+            .replace(/['"]+/g, '');
+    }
+    switch (texto) {
+        case getCSS('--nombreColorOption1'):
+            colorSeleccionado = getCSS('--colorPrimero');
+            nombreSeleccionado = 'Primero';
+            break;
+        case getCSS('--nombreColorOption2'):
+            colorSeleccionado = getCSS('--colorSegundo');
+            nombreSeleccionado = 'Segundo';
+            break;
+        case getCSS('--nombreColorOption3'):
+            colorSeleccionado = getCSS('--colorTercero');
+            nombreSeleccionado = 'Tercero';
+            break;
+        case getCSS('--nombreColorOption4'):
+            colorSeleccionado = getCSS('--colorCuarto');
+            nombreSeleccionado = 'Cuarto';
+            break;
+        case getCSS('--nombreColorOption5'):
+            colorSeleccionado = getCSS('--colorQuinto');
+            nombreSeleccionado = 'Quinto';
+            break;
+        case "BLANCO":
+            colorSeleccionado = getCSS('--colorBlanco');
+            nombreSeleccionado = 'Blanco';
+            break;
+        case "HECHO":
+            colorSeleccionado = getCSS('--colorHecho');
+            nombreSeleccionado = 'Hecho';
+            break;
+        // Si está en COLOR (diario vacío), lo dejamos tal cual para que coja blanco si lo quieres así
+        default:
+            break;
+    }
+});
+
+
+</script>
+</body>
+</html>
