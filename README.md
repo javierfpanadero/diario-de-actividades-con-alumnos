@@ -1,6 +1,8 @@
 # diario-de-actividades-con-alumnos
 Vídeo explicativo https://youtu.be/LUYXbQ_LCo4
 
+**La versión 4-1 pone enlaces a las asignaturas en la caja supoerior del alumno. A veces tarda en actualizarse. Si te ocurre, mueve una columna de asigantura y se actualizará.
+
 **La versión DiarioCopilotv3-2** es la misma que la 3-1 pero con una paleta de colores aplicada a los botones y una ordenación por si os gusta
 
 **La última versión es la DiarioCopilotv3-1**
