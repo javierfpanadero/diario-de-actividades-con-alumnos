@@ -1,28 +1,13 @@
-<div class="highlight-button">
-    <button id="high-btn">HIGH</button>
-    <div id="color-dropdown" style="display: none;">
-        <select id="color-selector">
-            <option value="none">Remove Highlighting</option>
-            <option value="yellow">Yellow</option>
-            <option value="red">Red</option>
-            <option value="blue">Blue</option>
-            <option value="green">Green</option>
-        </select>
-    </div>
-</div>
-<script>
-    document.getElementById('high-btn').addEventListener('click', function() {
-        const dropdown = document.getElementById('color-dropdown');
-        dropdown.style.display = dropdown.style.display === 'none' ? 'block' : 'none';
-    });
-    document.getElementById('color-selector').addEventListener('change', function() {
-        const selectedColor = this.value;
-        if (selectedColor !== 'none') {
-            // Apply highlighting logic here
-            document.body.style.backgroundColor = selectedColor;
-        } else {
-            // Remove highlighting logic here
-            document.body.style.backgroundColor = '';
-        }
-    });
-</script>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diario de Actividades</title>
+</head>
+<body>
+    <h1>Diario de Actividades con Alumnos</h1>
+    <p>Bienvenido a nuestro diario de actividades donde registramos las interacciones y aprendizajes de los alumnos.</p>
+    <!-- Aquí se pueden añadir más actividades con los alumnos -->
+</body>
+</html>
