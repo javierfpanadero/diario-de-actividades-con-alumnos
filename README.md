@@ -3,7 +3,7 @@ Vídeo explicativo https://youtu.be/LUYXbQ_LCo4
 
 **La última versión es la DiarioCopilot v4-8** Añade poder elegir entre varios colores de resaltado y enlaza en la caja del alumno todas las asignaturas que se pongan (en la versión anterior sólo se enlazaban de la segunda a la séptima)
 
-**La versión 4-1** pone enlaces a las asignaturas en la caja supoerior del alumno. A veces tarda en actualizarse. Si te ocurre, mueve una columna de asigantura y se actualizará.
+**La versión 4-1** pone enlaces a las asignaturas en la caja superior del alumno. A veces tarda en actualizarse. Si te ocurre, mueve una columna de asignatura y se actualizará.
 
 **La versión DiarioCopilotv3-2** es la misma que la 3-1 pero con una paleta de colores aplicada a los botones y una ordenación por si os gusta
 
