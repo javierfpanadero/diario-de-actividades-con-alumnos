@@ -1,5 +1,6 @@
 # diario-de-actividades-con-alumnos
 Vídeo explicativo https://youtu.be/LUYXbQ_LCo4
+
 **La última versión es la DiarioCopilot v4-8** Añade poder elegir entre varios colores de resaltado y enlaza en la caja del alumno todas las asignaturas que se pongan (en la versión anterior sólo se enlazaban de la segunda a la séptima)
 
 **La versión 4-1** pone enlaces a las asignaturas en la caja supoerior del alumno. A veces tarda en actualizarse. Si te ocurre, mueve una columna de asigantura y se actualizará.
