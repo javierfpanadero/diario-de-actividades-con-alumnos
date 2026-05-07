@@ -1,7 +1,11 @@
 # diario-de-actividades-con-alumnos
 **Vídeo explicativo versión 4-8** https://youtu.be/jWlFDrzb4bE
 
-**La última versión es la DiarioCopilot v4-8** Añade poder elegir entre varios colores de resaltado y enlaza en la caja del alumno todas las asignaturas que se pongan (en la versión anterior sólo se enlazaban de la segunda a la séptima)
+**La versión v4-9** añade un botón para insertar enlaces. Si le haces click te pedirá texto de enlace y URL. Si seleccionas texto antes de hacer click tomará ese texto como el texto del enlace y sólo te pedirá la URL. Se pueden usar enlaces a web externas y archivos locales (pdf, texto plano, imágenes, html, pero no word), también se puede poner como enlace la dirección de una carpeta y entonces en la nueva pestaña se puede navegar por el sistema de archivos y abrir los mismos tipos mencionados en esa pestaña o en otras.
+
+En Windows y usando Edge, como navegador, se puede hacer sin necesidad del botón. Si tomas un enlace que estés visitando de su barra de direcciones y lo copias en el diario, se convierte directamente en un enlace.
+
+**La versión v4-8** Añade poder elegir entre varios colores de resaltado y enlaza en la caja del alumno todas las asignaturas que se pongan (en la versión anterior sólo se enlazaban de la segunda a la séptima)
 
 **La versión 4-1** pone enlaces a las asignaturas en la caja superior del alumno. A veces tarda en actualizarse. Si te ocurre, mueve una columna de asignatura y se actualizará.
 
