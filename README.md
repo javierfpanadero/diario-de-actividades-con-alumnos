@@ -13,7 +13,7 @@ Además se ha ampliado la función subir y bajar para que también permita subir
 (Problema menor arreglado, consistencia entre el color que pone en el botón y el que se aplica cuando se abre un diario guardado)
 
 Es un archivo html. Se trata de llevar constancia de tareas hechas y pendientes y de comunicación con familias u otros docentes.
-<img width="1348" height="656" alt="image" src="https://github.com/user-attachments/assets/a728f90e-5362-4ee5-8d7f-bb6d26ecae5b" />
+<img width="1897" height="814" alt="imagen" src="https://github.com/user-attachments/assets/db2165e6-04af-42a6-ab55-6acff286259a" />
 Lo podréis abrir y editar desde un navegador (Firefox nos dio algún problema, pero en Chrome, Opera y Edge, al menos, funciona bien).
 He usado muchos tutoriales, ayudas e IA para generar el código e ir retocándolo.
 Está hecho usando CSS y JavaScript, así que tiene unos botoncicos y unas funciones que a mí me solucionan mucho.
