@@ -401,35 +401,63 @@ function setHighlight(color, event) {
 }
 // FIN PARA EL NUEVO BOTÓN HIGH
 
-//BOTÓN ENLACE
-// Función para normalizar URLs locales/web
+//INICIO BOTÓN ENLACES
+// Detecta el sistema operativo
+function getOS() {
+  const userAgent = navigator.userAgent.toLowerCase();
+  if (userAgent.includes('win')) return 'windows';
+  if (userAgent.includes('linux')) return 'linux';
+  if (userAgent.includes('mac')) return 'mac';
+  return 'unknown';
+}
+
+// Normaliza URL para Windows/Linux/Mac
 function normalizarURL(url) {
   url = url.trim();
   if (!url) return "";
-  if (/^(https?:\/\/|mailto:|tel:|file:\/\/|\/|\.{1,2}\/)/i.test(url)) return url;
+
+  // Ya es una URL válida
+  if (/^(https?:\/\/|mailto:|tel:|file:\/\/|\/|\.{1,2}\/)/i.test(url)) {
+    return url;
+  }
+
+  const os = getOS();
+
+  // Windows: C:\carpeta\archivo.pdf → file:///C:/carpeta/archivo.pdf
+  if (os === 'windows' && /^[a-zA-Z]:[\\/]/i.test(url)) {
+    return "file:///" + url.replace(/\\/g, '/');
+  }
+
+  // Windows UNC: \\servidor\carpeta → file://servidor/carpeta
+  if (os === 'windows' && /^\\\\/.test(url)) {
+    const path = url.slice(2).replace(/\\/g, '/');
+    return "file://" + path;
+  }
+
+  // Linux/Mac: /home/usuario/archivo.pdf → file:///home/usuario/archivo.pdf
+  if ((os === 'linux' || os === 'mac') && /^\//.test(url)) {
+    return "file://" + url;
+  }
+
+  // Ruta relativa (funciona en todos)
+  if (/^\.{1,2}[\/\\]/.test(url)) {
+    return url.replace(/\\/g, '/');
+  }
+
+  // Asumir web
   return "https://" + url;
 }
 
-// Función principal del botón ENLACE
-// Función para normalizar URLs locales/web
-function normalizarURL(url) {
-  url = url.trim();
-  if (!url) return "";
-  if (/^(https?:\/\/|mailto:|tel:|file:\/\/|\/|\.{1,2}\/)/i.test(url)) return url;
-  return "https://" + url;
-}
-
-// Función principal del botón ENLACE - CORREGIDA
+// Función principal ENLACE
 function insertarEnlace() {
   const sel = window.getSelection();
   let texto = "";
-  
-  // SI HAY TEXTO SELECCIONADO, úsalo automáticamente
+
+  // Usa texto seleccionado automáticamente
   if (sel.rangeCount > 0 && !sel.getRangeAt(0).collapsed) {
     texto = sel.toString().trim();
   }
-  
-  // Si NO hay selección, pide el texto
+
   if (!texto) {
     texto = prompt("Texto del enlace:");
     if (texto === null) return;
@@ -440,7 +468,12 @@ function insertarEnlace() {
     }
   }
 
-  const url = prompt("URL del enlace (web o local):\nEj: https://ejemplo.com\n./examen.pdf\n../docs/apuntes.html");
+  const os = getOS();
+  const ejemplos = os === 'windows' 
+    ? "Ej: https://ejemplo.com\nC:\\Docs\\examen.pdf\n../archivo.pdf\n\\\\servidor\\docs"
+    : "Ej: https://ejemplo.com\n/home/usuario/examen.pdf\n./archivo.pdf";
+
+  const url = prompt("URL del enlace:\n" + ejemplos);
   if (url === null) return;
 
   const urlLimpia = normalizarURL(url);
@@ -449,39 +482,37 @@ function insertarEnlace() {
     return;
   }
 
-  // Crea el enlace con estilo consistente con tu página
-  const enlace = `<a href="${urlLimpia}" target="_blank" rel="noopener noreferrer" style="color: #2196f3 !important; font-weight: bold; text-decoration: underline;">${texto}</a>`;
+  // Estilo consistente con tu página
+  const enlace = `<a href="${urlLimpia}" target="_blank" rel="noopener noreferrer" style="color:#2196f3 !important;font-weight:bold;text-decoration:underline;">${texto}</a>`;
   insertarHTMLEnSeleccionOEnCelda(enlace);
 }
 
-// Función auxiliar - MEJORADA para selección
+// Insertar en celda/selección
 function insertarHTMLEnSeleccionOEnCelda(html) {
   const sel = window.getSelection();
-  
+
   if (sel.rangeCount > 0) {
-    // Si hay selección válida, reemplaza
     document.execCommand("insertHTML", false, html);
     return;
   }
 
-  // Si no hay selección, busca celda activa
-  const celdaActiva = document.activeElement.closest("td, th, [contenteditable='true']");
-  if (celdaActiva && celdaActiva.isContentEditable) {
-    celdaActiva.focus();
+  const activo = document.activeElement;
+  const celda = activo.closest ? activo.closest("td, th, [contenteditable='true']") : null;
+  if (celda && celda.isContentEditable) {
+    celda.focus();
     const range = document.createRange();
-    range.selectNodeContents(celdaActiva);
-    range.collapse(false); // Al final de la celda
+    range.selectNodeContents(celda);
+    range.collapse(false);
     sel.removeAllRanges();
     sel.addRange(range);
     document.execCommand("insertHTML", false, html);
     return;
   }
 
-  alert("Pon el cursor dentro de una celda editable o selecciona texto primero.");
+  alert("Pon el cursor en una celda editable o selecciona texto primero.");
 }
-// FIN PARA EL BOTÓN ENLACE
-
-
+//FIN BOTÓN ENLACES
+	
 function toggleBold() {
     document.execCommand('bold', false, null);
 }
