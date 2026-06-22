@@ -1,4 +1,6 @@
 # diario-de-actividades-con-alumnos
+**La última versión es la v-9r**
+
 **Vídeo explicativo versión 4-8** https://youtu.be/jWlFDrzb4bE
 
 **La versión v4-9** añade un botón para insertar enlaces. Si le haces click te pedirá texto de enlace y URL. Si seleccionas texto antes de hacer click tomará ese texto como el texto del enlace y sólo te pedirá la URL. Se pueden usar enlaces a web externas y archivos locales (pdf, texto plano, imágenes, html, pero no word), también se puede poner como enlace la dirección de una carpeta y entonces en la nueva pestaña se puede navegar por el sistema de archivos y abrir los mismos tipos mencionados en esa pestaña o en otras.
