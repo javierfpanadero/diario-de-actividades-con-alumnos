@@ -1,5 +1,5 @@
 # diario-de-actividades-con-alumnos
-**La última versión es la v-9r**
+**La última versión es la v-9**
 
 **Vídeo explicativo versión 4-8** https://youtu.be/jWlFDrzb4bE
 
