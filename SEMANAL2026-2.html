@@ -236,7 +236,7 @@ Juntos somos más -->
 <h1 contenteditable="true" id="anchor0">SEMANAL<br></h1>
 <div class="floating-buttons">
     <button onclick="window.location.href='#top';"><b>TOP</b></button>
-    <button id="saveButton" title="Descarga un archivo DIARIO_DÍA_HORA"><b>GUARDAR</b></button>
+    <button id="saveButton" title="Descarga un archivo SEMANAL_DÍA_HORA"><b>GUARDAR</b></button>
     <button class="color-button" id="colorButton" onclick="aplicarColor()" title="Elige primero opción en el desplegable, click en la celda y luego click en el botón" style="color: white;"><b>COLOR</b></button>
     <div class="dropdown-arrow" onclick="toggleColorOptions(event)"></div>
     <div class="color-options" id="colorOptions">
@@ -508,7 +508,7 @@ document.getElementById('saveButton').addEventListener('click', function() {
     const now = new Date();
     const date = now.toISOString().slice(0,10);
     const time = now.toTimeString().slice(0,8).replace(/:/g, '-');
-    const fileName = `DIARIO_${date}_${time}.html`;
+    const fileName = `SEMANAL_${date}_${time}.html`;
     link.href = URL.createObjectURL(blob);
     link.download = fileName;
     link.click();
